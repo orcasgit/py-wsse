@@ -1,0 +1,2 @@
+class SignatureVerificationFailed(Exception):
+    pass
