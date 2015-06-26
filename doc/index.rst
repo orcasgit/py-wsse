@@ -1,5 +1,5 @@
-Welcome to django-fernet-fields!
-================================
+Welcome to py-wsse!
+===================
 
 `WS-Security`_ (WSSE) support for Python, including an optional `Suds`_ plugin.
 
