@@ -22,7 +22,11 @@ setup(
     author_email='orcastech@orcasinc.com',
     url='https://github.com/orcasgit/py-wsse/',
     packages=find_packages(),
-    install_requires=['xmlsec>=0.3.1', 'pyOpenSSL>=0.15.1', 'lxml>=3.4.4'],
+    install_requires=[
+        'xmlsec>=0.3.1.orcas1',
+        'pyOpenSSL>=0.15.1',
+        'lxml>=3.4.4',
+    ],
     extras_require={'suds': ['suds-jurko>=0.6']},
     classifiers=[
         'Environment :: Web Environment',

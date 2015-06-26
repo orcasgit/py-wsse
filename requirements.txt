@@ -2,7 +2,9 @@
 
 -e .
 
-xmlsec>=0.3.1
+-f ./vendor/
+
+xmlsec>=0.3.1.orcas1
 pyOpenSSL>=0.15.1
 
 suds-jurko>=0.6
