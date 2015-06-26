@@ -30,7 +30,10 @@ Documentation for py-wsse is available at https://py-wsse.readthedocs.org/
 
 This app is available on `PyPI`_ and can be installed with ``pip install
 py-wsse`` (or ``pip install py-wsse[suds]`` to also pull in `Suds`_ as a
-dependency).
+dependency). (Due to a temporary need for a patched dependency, you have to
+also include ``-f
+https://github.com/orcasgit/py-wsse/raw/master/vendor/xmlsec-0.3.1.orcas1.tar.gz``
+in the pip command).
 
 .. _PyPI: https://pypi.python.org/pypi/py-wsse/
 

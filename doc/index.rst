@@ -40,7 +40,9 @@ Installation
 
 ``py-wsse`` is available on `PyPI`_. Install it with::
 
-    pip install py-wsse
+    pip install -f https://github.com/orcasgit/py-wsse/raw/master/vendor/xmlsec-0.3.1.orcas1.tar.gz py-wsse
+
+(The ``-f`` option is required for now due to the patched `xmlsec`_).
 
 Or use ``pip install py-wsse[suds]`` to pull in `Suds`_ as an additional
 dependency.
