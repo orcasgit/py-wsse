@@ -19,8 +19,8 @@ libxmlsec1-dev`` should take care of that. On RedHat-based systems, try ``sudo
 yum install openssl-devel libxml2-devel xmlsec1-devel``.
 
 Currently a `patched version of xmlsec`_ is required; it contains `this
-patch`_. An sdist of the required patched version is included in the
-``vendor/`` directory.
+patch`_. An sdist of the required patched version is included in the `vendor`_
+directory of the ``py-wsse`` git repo.
 
 If using `Suds`_, the `jurko fork`_ is required; it contains required fixes to
 the plugin API. (This fork is available on PyPI as the `suds-jurko`_ package,
@@ -33,6 +33,7 @@ so no vendored sdist is required.)
 .. _this patch: https://github.com/mehcode/python-xmlsec/pull/4/files
 .. _jurko fork: https://bitbucket.org/jurko/suds
 .. _suds-jurko: https://pypi.python.org/pypi/suds-jurko
+.. _vendor: https://github.com/orcasgit/py-wsse/tree/master/vendor
 
 
 Installation
