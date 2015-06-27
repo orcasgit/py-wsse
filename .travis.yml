@@ -9,6 +9,10 @@ env:
     - TOXENV=flake8
     - TOXENV=docs
 
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y libxml2-dev libssl-dev libxmlsec1-dev
+
 install: travis_retry pip install tox coveralls
 
 script: tox -e $TOXENV
