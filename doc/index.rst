@@ -68,6 +68,14 @@ Current features:
 
 * Decrypting ``EncryptedData`` elements in a received SOAP envelope.
 
+.. warning::
+
+   Yes, `XML Encryption 1.0 is broken`_. Sometimes people use it anyway --
+   require it, even -- and we have to talk to their systems, so here it
+   is. Just don't assume it will actually protect your data. Use TLS.
+
+.. _XML Encryption 1.0 is broken: http://blog.cryptographyengineering.com/2011/10/attack-of-week-xml-encryption.html
+
 
 Usage
 -----
