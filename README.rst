@@ -15,7 +15,8 @@ py-wsse
    :target: https://pypi.python.org/pypi/py-wsse
    :alt: Latest version
 
-`WS-Security`_ (WSSE) support for Python, including an optional `Suds`_ plugin.
+`WS-Security`_ (SOAP WSSE) support for Python, including an optional `Suds`_
+plugin.
 
 ``py-wsse`` supports Python 2.7, 3.3, 3.4, pypy, and pypy3.
 

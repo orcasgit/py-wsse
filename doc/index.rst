@@ -1,7 +1,8 @@
 Welcome to py-wsse!
 ===================
 
-`WS-Security`_ (WSSE) support for Python, including an optional `Suds`_ plugin.
+`WS-Security`_ (SOAP WSSE) support for Python, including an optional `Suds`_
+plugin.
 
 .. _WS-Security: https://www.oasis-open.org/committees/download.php/16790/wss-v1.1-spec-os-SOAPMessageSecurity.pdf
 .. _Suds: https://fedorahosted.org/suds/
