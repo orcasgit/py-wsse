@@ -20,22 +20,14 @@ libxml2-dev libxmlsec1-dev`` should take care of that. On RedHat-based systems,
 try ``sudo yum install openssl-devel libxml2-devel xmlsec1-devel
 xmlsec1-openssl-devel libtool-ltdl-devel``.
 
-Currently a `patched version of python-xmlsec`_ is required; it contains `this
-patch`_. An sdist of the required patched version is included in the `vendor`_
-directory of the ``py-wsse`` git repo.
-
 If using `Suds`_, the `jurko fork`_ is required; it contains required fixes to
-the plugin API. (This fork is available on PyPI as the `suds-jurko`_ package,
-so no vendored sdist is required.)
+the plugin API. (This fork is available on PyPI as the `suds-jurko`_ package.)
 
 .. _PyOpenSSL: https://pypi.python.org/pypi/pyOpenSSL
 .. _python-xmlsec: https://pypi.python.org/pypi/xmlsec
 .. _lxml: http://lxml.de/
-.. _patched version of python-xmlsec: https://github.com/orcasgit/python-xmlsec/tree/orcas
-.. _this patch: https://github.com/mehcode/python-xmlsec/pull/4/files
 .. _jurko fork: https://bitbucket.org/jurko/suds
 .. _suds-jurko: https://pypi.python.org/pypi/suds-jurko
-.. _vendor: https://github.com/orcasgit/py-wsse/tree/master/vendor
 
 
 Installation
@@ -43,9 +35,7 @@ Installation
 
 ``py-wsse`` is available on `PyPI`_. Install it with::
 
-    pip install -f https://github.com/orcasgit/py-wsse/raw/master/vendor/xmlsec-0.3.1.orcas1.tar.gz py-wsse
-
-(The ``-f`` option is required for now due to the patched `python-xmlsec`_).
+    pip install py-wsse
 
 Or use ``pip install py-wsse[suds]`` to pull in `Suds`_ as an additional
 dependency.
