@@ -1,0 +1,3 @@
+# Requirements for building py-wsse docs
+
+Sphinx>=1.3.1
