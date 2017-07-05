@@ -9,5 +9,5 @@ before_install:
   - sudo apt-get install -y libxml2-dev libssl-dev libxmlsec1-dev
 install:
   - travis_retry pip install coveralls tox-travis
-script: tox
+script: tox -v
 after_success: coveralls
