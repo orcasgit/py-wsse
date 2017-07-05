@@ -1,6 +1,9 @@
+import pytest
+
 from lxml import etree
 
 from wsse.constants import SOAP_NS, WSSE_NS, DS_NS
+from wsse.exceptions import SignatureVerificationFailed
 from wsse import signing
 
 
@@ -36,3 +39,11 @@ def test_sign_and_verify(envelope, cert_path, key_path):
 
     # no SignatureValidationFailed exception raised
     signing.verify(signed, cert_path)
+
+
+def test_verify_failed(envelope, cert_path, key_path):
+    signed = signing.sign(envelope, key_path, cert_path)
+    malform = signed.replace(b'<SignatureValue>', b'<SignatureValue>MALFORMED')
+
+    with pytest.raises(SignatureVerificationFailed):
+        signing.verify(malform, cert_path)

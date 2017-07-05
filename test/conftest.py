@@ -54,8 +54,8 @@ def key_path(tmpdir, key):
 
 
 @pytest.fixture
-def cert_path(tmpdir, key):
-    """Create X.509 cert with ``key``, write to PEM, return path."""
+def cert(key):
+    """Create X.509 cert with ``key``, return cert."""
     cert = crypto.X509()
     cert.get_subject().C = "US"
     cert.get_subject().ST = "Washington"
@@ -69,6 +69,12 @@ def cert_path(tmpdir, key):
     cert.set_issuer(cert.get_subject())
     cert.set_pubkey(key)
     cert.sign(key, 'sha1')
+    return cert
+
+
+@pytest.fixture
+def cert_path(tmpdir, cert):
+    """Write X.509 cert to PEM, return path."""
 
     cert_path = str(tmpdir / 'cert.pem')
 
