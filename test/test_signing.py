@@ -2,24 +2,11 @@ import pytest
 
 from lxml import etree
 
-from wsse.constants import SOAP_NS, WSSE_NS, DS_NS
 from wsse.exceptions import SignatureVerificationFailed
 from wsse import signing
 
 
-namespaces = {
-    'soap': SOAP_NS,
-    'wsse': WSSE_NS,
-    'ds': DS_NS,
-}
-
-
-def xp(node, xpath):
-    """Utility to do xpath search with namespaces."""
-    return node.xpath(xpath, namespaces=namespaces)
-
-
-def test_sign_and_verify(envelope, cert_path, key_path):
+def test_sign_and_verify(envelope, cert_path, key_path, xp):
     signed = signing.sign(envelope, key_path, cert_path)
     doc = etree.fromstring(signed)
     issuer = xp(

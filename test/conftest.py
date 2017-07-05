@@ -1,7 +1,24 @@
 from OpenSSL import crypto
 import pytest
 
-from wsse.constants import SOAP_NS, WSSE_NS, WSU_NS
+from wsse.constants import DS_NS, ENC_NS, SOAP_NS, WSSE_NS, WSU_NS
+
+
+namespaces = {
+    'ds': DS_NS,
+    'soap': SOAP_NS,
+    'xenc': ENC_NS,
+    'wsse': WSSE_NS,
+    'wsu': WSU_NS,
+}
+
+
+@pytest.fixture
+def xp():
+    """Utility to do xpath search with namespaces."""
+    def xp(node, xpath):
+        return node.xpath(xpath, namespaces=namespaces)
+    return xp
 
 
 @pytest.fixture
@@ -53,16 +70,10 @@ def key_path(tmpdir, key):
     return key_path
 
 
-@pytest.fixture
-def cert(key):
-    """Create X.509 cert with ``key``, return cert."""
+def create_cert(key, subject):
     cert = crypto.X509()
-    cert.get_subject().C = "US"
-    cert.get_subject().ST = "Washington"
-    cert.get_subject().L = "La Conner"
-    cert.get_subject().O = "Green Herons"
-    cert.get_subject().OU = "Little Dead Man Island"
-    cert.get_subject().CN = 'example.com'
+    for k, v in subject.items():
+        setattr(cert.get_subject(), k, v)
     cert.set_serial_number(1000)
     cert.gmtime_adj_notBefore(0)
     cert.gmtime_adj_notAfter(10*365*24*60*60)
@@ -73,6 +84,19 @@ def cert(key):
 
 
 @pytest.fixture
+def cert(key):
+    """Create X.509 cert with ``key``, return cert."""
+    return create_cert(key, {
+        'C': "US",
+        'ST': "Washington",
+        'L': "La Conner",
+        'O': "Green Herons",
+        'OU': "Little Dead Man Island",
+        'CN': 'example.com',
+    })
+
+
+@pytest.fixture
 def cert_path(tmpdir, cert):
     """Write X.509 cert to PEM, return path."""
 
@@ -80,5 +104,31 @@ def cert_path(tmpdir, cert):
 
     with open(cert_path, 'wb') as fh:
         fh.write(crypto.dump_certificate(crypto.FILETYPE_PEM, cert))
+
+    return cert_path
+
+
+@pytest.fixture
+def their_cert(key):
+    """Write their X.509 cert to PEM, return path."""
+
+    return create_cert(key, {
+        'C': "US",
+        'ST': "Oregon",
+        'L': "Bend",
+        'O': "Bendistillery",
+        'OU': "Development",
+        'CN': 'dev.example.com',
+    })
+
+
+@pytest.fixture
+def their_cert_path(tmpdir, their_cert):
+    """Write their X.509 cert to PEM, return path."""
+
+    cert_path = str(tmpdir / 'theircert.pem')
+
+    with open(cert_path, 'wb') as fh:
+        fh.write(crypto.dump_certificate(crypto.FILETYPE_PEM, their_cert))
 
     return cert_path

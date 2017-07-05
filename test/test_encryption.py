@@ -3,24 +3,10 @@ import base64
 from lxml import etree
 from OpenSSL import crypto
 
-from wsse.constants import SOAP_NS, WSSE_NS, DS_NS, ENC_NS
 from wsse import encryption
 
 
-namespaces = {
-    'soap': SOAP_NS,
-    'wsse': WSSE_NS,
-    'ds': DS_NS,
-    'xenc': ENC_NS,
-}
-
-
-def xp(node, xpath):
-    """Utility to do xpath search with namespaces."""
-    return node.xpath(xpath, namespaces=namespaces)
-
-
-def test_encryption(envelope, cert, cert_path, key_path):
+def test_encryption(envelope, cert, cert_path, key_path, xp):
     encrypted = encryption.encrypt(envelope, cert_path)
     doc = etree.fromstring(encrypted)
     bst = xp(
